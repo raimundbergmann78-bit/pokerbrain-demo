@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PokerBrain – Demo</title>
+<meta name="description" content="PokerBrain – Poker lernen mit Quiz, Poker-Tisch, GG-Hand-Import und Range Lab. Demo und Videos.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="icon-192.png">
+<style>
+  :root { --gruen: #39ff88; --blau: #2ea8ff; --gelb: #ffd60a; --rot: #ff3860; --text: #ecfff5; --muted: #8fb0a2;
+          --line: rgba(57, 255, 136, .26); --panel: rgba(7, 11, 15, .88); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #000; color: var(--text); font: 16px/1.55 "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; }
+  body::before { content: ""; position: fixed; inset: -40%; z-index: -1; pointer-events: none;
+    background: repeating-linear-gradient(-28deg, transparent 0 90px, rgba(57, 255, 136, .07) 90px 92px, transparent 92px 170px, rgba(46, 168, 255, .05) 170px 180px); }
+  header { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 12px; padding: 12px 18px;
+           background: rgba(0, 0, 0, .86); border-bottom: 1px solid rgba(57, 255, 136, .55); box-shadow: 0 2px 22px rgba(57, 255, 136, .22); backdrop-filter: blur(6px); }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 21px; font-weight: 700; }
+  .logo img { width: 34px; height: 34px; border-radius: 8px; box-shadow: 0 0 12px rgba(57, 255, 136, .45); }
+  .logo b { color: var(--gruen); text-shadow: 0 0 10px rgba(57, 255, 136, .65); }
+  .sprachen { margin-left: auto; display: inline-flex; border: 1px solid rgba(46, 168, 255, .5); border-radius: 8px; overflow: hidden; }
+  .sprachen button { background: none; border: 0; color: var(--muted); font: inherit; font-size: 13px; font-weight: 700; padding: 5px 10px; cursor: pointer; }
+  .sprachen button.on { background: var(--blau); color: #00121f; box-shadow: 0 0 12px rgba(46, 168, 255, .65); }
+  main { max-width: 1000px; margin: 0 auto; padding: 34px 18px 50px; }
+  h1 { font-size: clamp(30px, 6vw, 52px); line-height: 1.1; margin: 0 0 12px; text-shadow: 0 0 12px rgba(57, 255, 136, .55), 0 0 32px rgba(57, 255, 136, .25); }
+  h2 { font-size: 22px; margin: 0 0 12px; text-shadow: 0 0 8px rgba(57, 255, 136, .35); }
+  .unter { font-size: clamp(16px, 2.6vw, 20px); color: #cfe9de; max-width: 700px; }
+  .knopf { display: inline-flex; align-items: center; gap: 8px; padding: 15px 26px; border-radius: 12px; font-weight: 800; font-size: 18px; text-decoration: none;
+           background: var(--gruen); color: #00140a; box-shadow: 0 0 14px rgba(57, 255, 136, .65); transition: box-shadow .2s; }
+  .knopf:hover { box-shadow: 0 0 26px rgba(57, 255, 136, .95); }
+  .hinweis { color: var(--muted); font-size: 14px; }
+  .karte { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 22px; margin: 22px 0;
+           box-shadow: 0 0 18px rgba(57, 255, 136, .07), inset 0 0 26px rgba(57, 255, 136, .03); }
+  .raster { display: grid; gap: 18px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .raster { grid-template-columns: 1fr 1fr; } .drei { grid-template-columns: repeat(3, 1fr); } }
+  .punkt { border: 1px solid var(--line); border-radius: 16px; padding: 18px; background: rgba(0, 0, 0, .5); }
+  .punkt b { display: block; margin-bottom: 4px; color: var(--gruen); text-shadow: 0 0 8px rgba(57, 255, 136, .45); }
+  video { width: 100%; border-radius: 14px; border: 1px solid rgba(46, 168, 255, .5); box-shadow: 0 0 18px rgba(46, 168, 255, .35); background: #000; }
+  .video-titel { font-weight: 700; margin: 0 0 8px; color: var(--blau); text-shadow: 0 0 8px rgba(46, 168, 255, .5); }
+  footer { max-width: 1000px; margin: 0 auto; padding: 10px 18px 30px; color: var(--muted); font-size: 13px; text-align: center; }
+  [data-l] { display: none; } html[lang=de] [data-l=de], html[lang=en] [data-l=en], html[lang=ro] [data-l=ro] { display: revert; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><img src="icon-192.png" alt=""><span>Poker<b>Brain</b></span></div>
+  <div class="sprachen"><button data-s="ro">RO</button><button data-s="de">DE</button><button data-s="en">EN</button></div>
+</header>
+<main>
+  <h1>
+    <span data-l="de">Poker clever lernen.</span><span data-l="en">Learn poker the smart way.</span><span data-l="ro">Învață poker inteligent.</span>
+  </h1>
+  <p class="unter">
+    <span data-l="de">Quiz jeden Tag, Poker-Tisch mit Empfehlung, deine GGPoker-Hände 1:1 nachspielen und Range Lab – alles in einer App.</span>
+    <span data-l="en">A daily quiz, a poker table with recommendations, replay your GGPoker hands 1:1 and the Range Lab – all in one app.</span>
+    <span data-l="ro">Quiz zilnic, masă de poker cu recomandări, mâinile tale din GGPoker reluate 1:1 și Range Lab – totul într-o singură aplicație.</span>
+  </p>
+  <p style="margin:26px 0 8px">
+    <a class="knopf" href="demo.html">▶ <span data-l="de">Demo öffnen</span><span data-l="en">Open the demo</span><span data-l="ro">Deschide demo</span></a>
+  </p>
+  <p class="hinweis">
+    <span data-l="de">Die Demo läuft ganz im Browser – nichts wird gespeichert oder verschickt. Die volle App (Tisch mit allen Ranges, GG-Import, Range Lab, Chat) zeigen die Videos.</span>
+    <span data-l="en">The demo runs entirely in your browser – nothing is saved or sent. The videos show the full app (table with all ranges, GG import, Range Lab, chat).</span>
+    <span data-l="ro">Demo-ul rulează doar în browser – nimic nu se salvează sau trimite. Aplicația completă (masa cu toate range-urile, import GG, Range Lab, chat) o vezi în videoclipuri.</span>
+  </p>
+
+  <section class="karte">
+    <h2><span data-l="de">Die App in Aktion</span><span data-l="en">The app in action</span><span data-l="ro">Aplicația în acțiune</span></h2>
+    <div class="raster">
+      <div><p class="video-titel">Deutsch</p><video src="video_de.mp4" poster="vorschau_de.jpg" controls preload="metadata" playsinline></video></div>
+      <div><p class="video-titel">English</p><video src="video_en.mp4" poster="vorschau_en.jpg" controls preload="metadata" playsinline></video></div>
+    </div>
+  </section>
+
+  <section class="karte">
+    <h2><span data-l="de">Was drin ist</span><span data-l="en">What's inside</span><span data-l="ro">Ce conține</span></h2>
+    <div class="raster drei">
+      <div class="punkt"><b>Quiz-Akademie</b>
+        <span data-l="de">Jeden Tag dieselben 20 Situationen für alle, mit Erklärung und Rangliste.</span>
+        <span data-l="en">The same 20 situations for everyone every day, with explanations and a leaderboard.</span>
+        <span data-l="ro">În fiecare zi aceleași 20 de situații pentru toți, cu explicații și clasament.</span></div>
+      <div class="punkt"><b><span data-l="de">Poker-Tisch</span><span data-l="en">Poker table</span><span data-l="ro">Masa de poker</span></b>
+        <span data-l="de">Hand eingeben, Empfehlung aus Ranges, Equity und Pot Odds – mit Würfel 1–100 für gemischte Entscheidungen.</span>
+        <span data-l="en">Enter a hand, get advice from ranges, equity and pot odds – with a 1–100 dice for mixed decisions.</span>
+        <span data-l="ro">Introduci mâna, primești recomandarea din range-uri, equity și pot odds – cu zar 1–100 pentru decizii mixte.</span></div>
+      <div class="punkt"><b><span data-l="de">GG-Hände & Range Lab</span><span data-l="en">GG hands & Range Lab</span><span data-l="ro">Mâini GG & Range Lab</span></b>
+        <span data-l="de">Hand-History oder Screenshot einfügen und jede Entscheidung prüfen.</span>
+        <span data-l="en">Paste a hand history or screenshot and check every decision.</span>
+        <span data-l="ro">Lipești istoricul sau o captură de ecran și verifici fiecare decizie.</span></div>
+      <div class="punkt"><b><span data-l="de">Rangliste & Gewinne</span><span data-l="en">Leaderboard & wins</span><span data-l="ro">Clasament & câștiguri</span></b>
+        <span data-l="de">Free- und Premium-Liga, Preise, die besten Gewinne jedes Spielers.</span>
+        <span data-l="en">Free and Premium league, prizes, every player's best wins.</span>
+        <span data-l="ro">Liga Free și Premium, premii, cele mai bune câștiguri ale fiecărui jucător.</span></div>
+      <div class="punkt"><b>Chat & Coaching</b>
+        <span data-l="de">Vier Chat-Räume und Gruppen-Coaching mit Trainern auf Discord.</span>
+        <span data-l="en">Four chat rooms and group coaching with coaches on Discord.</span>
+        <span data-l="ro">Patru camere de chat și coaching de grup cu antrenori pe Discord.</span></div>
+      <div class="punkt"><b><span data-l="de">Handy & PC</span><span data-l="en">Phone & PC</span><span data-l="ro">Telefon & PC</span></b>
+        <span data-l="de">Läuft im Browser und lässt sich wie eine App installieren.</span>
+        <span data-l="en">Runs in the browser and installs like an app.</span>
+        <span data-l="ro">Merge în browser și se instalează ca o aplicație.</span></div>
+    </div>
+  </section>
+</main>
+<footer>
+  <span data-l="de">Nur zum Lernen – auf PokerBrain wird nicht um Geld gespielt. Ab 18 Jahren. Demo-Version, Stand November 2026.</span>
+  <span data-l="en">For learning only – no real-money play on PokerBrain. 18+ only. Demo version, November 2026.</span>
+  <span data-l="ro">Doar pentru învățare – pe PokerBrain nu se joacă pe bani. De la 18 ani. Versiune demo, noiembrie 2026.</span>
+</footer>
+<script>
+  // Sprache: aus dem Browser (ro/de/en), gemerkt im Browser
+  const erlaubt = ["ro", "de", "en"];
+  let gespeichert = null;
+  try { gespeichert = localStorage.getItem("pb_sprache"); } catch (e) { }
+  const browser = (navigator.language || "de").slice(0, 2);
+  setze(erlaubt.includes(gespeichert) ? gespeichert : erlaubt.includes(browser) ? browser : "en");
+  document.querySelectorAll(".sprachen button").forEach(b => b.onclick = () => setze(b.dataset.s));
+  function setze(s) {
+    document.documentElement.lang = s;
+    document.querySelectorAll(".sprachen button").forEach(b => b.classList.toggle("on", b.dataset.s === s));
+    try { localStorage.setItem("pb_sprache", s); } catch (e) { }
+  }
+</script>
+</body>
+</html>
